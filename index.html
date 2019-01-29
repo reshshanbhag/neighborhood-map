@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+      <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="contianer">
+      <div class="options-box">
+        <h1>Find an attraction in San Diego<h1>
+<!--        <div>
+          <input id="show-attractions" type="button" value="Show Attractions">
+          <input id="hide-attractions" type="button" value="Hide Attractions">
+        </div>
+  -->
+      </div>
+      <div id="map"></div>
+      <div id="list">
+        <div id="search-box"
+          <input type="text" data-bind="value: query, valueUpdate: 'keyup'" placeholder="Search...">
+        </div>
+       <div data-bind="foreach:filteredItems">
+         <span data-bind="text:$parent.title"></span><br>
+       </div>
+        <ul id = "list-view" data-bind="foreach: markersList">
+          <li data-bind="text: title, click:$parent.setInfoWindow"></li>
+        </ul>
+      </div>
+    </div>
+  <!--  <script
+        src="js/knockout-3.4.2.js">
+    </script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js">
+    </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script
+       src="js/app.js">
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUnLpVtgeHUWTyPpzajpjFol6AxZ0DaAM&v=3&libraries=places&callback=initMap">
+    </script>
+  </body>
+</html>

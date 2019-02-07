@@ -2,46 +2,65 @@
 
 <html>
   <head>
-      <link href="css/style.css" rel="stylesheet">
+    <title>My Neighborhood map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
-    <div class="contianer">
-      <div class="options-box">
-        <h1>Find an attraction in San Diego<h1>
-<!--        <div>
-          <input id="show-attractions" type="button" value="Show Attractions">
-          <input id="hide-attractions" type="button" value="Hide Attractions">
-        </div>
-  -->
-      </div>
-      <div id="map"></div>
-      <div id="list">
-        <div id="search-box"
-          <input type="text" data-bind="value: query, valueUpdate: 'keyup'" placeholder="Search...">
-        </div>
-       <div data-bind="foreach:filteredItems">
-         <span data-bind="text:$parent.title"></span><br>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>San Diego Attractions</h3>
+            </div>
+            <ul class="list-unstyled components">
+              <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Filter</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search..." data-bind="textInput: filter_query">
+                  </form>
+                </ul>
+              </li>
+            <ul class="list-unstyled components" id="POIList" data-bind="foreach: filteredItems">
+              <li class="places" data-bind="text: title, click: $parent.setInfoWindow"></li>
+            </ul>
+        </nav>
+
+        <div id="content">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+            </div>
+          </nav>
+          <div id="map" class="map"></div>
+
        </div>
-        <ul id = "list-view" data-bind="foreach: markersList">
-          <li data-bind="text: title, click:$parent.setInfoWindow"></li>
-        </ul>
-      </div>
+
     </div>
-  <!--  <script
-        src="js/knockout-3.4.2.js">
-    </script> -->
+
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js">
     </script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
-
+    <script src="https://coreui.io/docs/dist/js/bootstrap.js"></script>
     <script
        src="js/app.js">
     </script>
 
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUnLpVtgeHUWTyPpzajpjFol6AxZ0DaAM&v=3&libraries=places&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUnLpVtgeHUWTyPpzajpjFol6AxZ0DaAM&v=3&libraries=places&callback=initMap"
+        onerror="googleError()">
     </script>
   </body>
 </html>
